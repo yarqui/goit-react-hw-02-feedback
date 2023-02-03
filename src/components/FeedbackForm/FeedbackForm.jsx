@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Statistics } from 'components/Statistics/Statistics';
 // import PropTypes from 'prop-types';
 
 export default class FeedbackForm extends Component {
@@ -7,11 +8,10 @@ export default class FeedbackForm extends Component {
   //   };
 
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+    good: this.props.state.good,
+    neutral: this.props.state.neutral,
+    bad: this.props.state.bad,
   };
-  // const {state} = this.props;
 
   handleFeedbackBtn = e => {
     const keyName = e.target.name;
@@ -50,25 +50,13 @@ export default class FeedbackForm extends Component {
         <button name="bad" type="button" onClick={this.handleFeedbackBtn}>
           Bad
         </button>
-        <h2>Statistics</h2>
-        <ul>
-          <li>
-            Good:<span> {this.state.good}</span>
-          </li>
-          <li>
-            Neutral:<span> {this.state.neutral}</span>
-          </li>
-          <li>
-            Bad:<span> {this.state.bad}</span>
-          </li>
-          <li>
-            Total:<span> {this.countTotalFeedback()}</span>
-          </li>
-          <li>
-            Positive Feedback:
-            <span> {this.countPositiveFeedbackPercentage()}%</span>
-          </li>
-        </ul>
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+        ></Statistics>
       </div>
     );
   }
