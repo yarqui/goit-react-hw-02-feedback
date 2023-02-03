@@ -11,6 +11,7 @@ export default class FeedbackForm extends Component {
     neutral: 0,
     bad: 0,
   };
+  // const {state} = this.props;
 
   handleFeedbackBtn = e => {
     const keyName = e.target.name;
@@ -23,10 +24,17 @@ export default class FeedbackForm extends Component {
   countTotalFeedback = () => {
     const values = Object.values(this.state);
 
-    const total = values.reduce();
-    console.log('total:', total);
+    const total = values.reduce((total, value) => {
+      return total + value;
+    }, 0);
 
     return total;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const total = this.countTotalFeedback();
+    const percentage = Math.round((this.state['good'] / total) * 100);
+    return percentage ? percentage : 0;
   };
 
   render() {
@@ -45,19 +53,20 @@ export default class FeedbackForm extends Component {
         <h2>Statistics</h2>
         <ul>
           <li>
-            Good: <span>{this.state.good}</span>
+            Good:<span> {this.state.good}</span>
           </li>
           <li>
-            Neutral: <span>{this.state.neutral}</span>
+            Neutral:<span> {this.state.neutral}</span>
           </li>
           <li>
-            Bad: <span>{this.state.bad}</span>
+            Bad:<span> {this.state.bad}</span>
           </li>
           <li>
-            Total: <span></span>
+            Total:<span> {this.countTotalFeedback()}</span>
           </li>
           <li>
-            Positive Feedback: <span>%</span>
+            Positive Feedback:
+            <span> {this.countPositiveFeedbackPercentage()}%</span>
           </li>
         </ul>
       </div>
