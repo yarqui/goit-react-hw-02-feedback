@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Statistics } from 'components/Statistics/Statistics';
-// import PropTypes from 'prop-types';
+import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 
 export default class FeedbackForm extends Component {
-  //   static propTypes = {
-  //     prop: PropTypes,
-  //   };
-
   state = {
     good: this.props.state.good,
     neutral: this.props.state.neutral,
@@ -38,25 +34,22 @@ export default class FeedbackForm extends Component {
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
+
     return (
       <div>
-        <h2>Please leave feedback</h2>
-        <button name="good" type="button" onClick={this.handleFeedbackBtn}>
-          Good
-        </button>
-        <button name="neutral" type="button" onClick={this.handleFeedbackBtn}>
-          Neutral
-        </button>
-        <button name="bad" type="button" onClick={this.handleFeedbackBtn}>
-          Bad
-        </button>
+        <FeedbackOptions
+          options={(good, neutral, bad)}
+          onLeaveFeedback={this.handleFeedbackBtn}
+        />
+
         <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
+          good={good}
+          neutral={neutral}
+          bad={bad}
           total={this.countTotalFeedback()}
           positivePercentage={this.countPositiveFeedbackPercentage()}
-        ></Statistics>
+        />
       </div>
     );
   }
