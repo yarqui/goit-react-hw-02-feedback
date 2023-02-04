@@ -10,8 +10,8 @@ export class App extends Component {
   };
 
   render() {
-    const { good, bad, neutral } = this.state;
+    // const { good, bad, neutral } = this.state;
 
-    return <FeedbackForm state={(good, bad, neutral)}></FeedbackForm>;
+    return <FeedbackForm state={this.state}></FeedbackForm>;
   }
 }

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Statistics } from 'components/Statistics/Statistics';
-import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
+import PropTypes from 'prop-types';
+import Statistics from 'components/Statistics';
+import FeedbackOptions from 'components/FeedbackOptions';
+import Section from 'components/Section';
 
 export default class FeedbackForm extends Component {
   state = {
-    good: this.props.good,
-    neutral: this.props.neutral,
-    bad: this.props.bad,
+    good: this.props.state.good,
+    neutral: this.props.state.neutral,
+    bad: this.props.state.bad,
   };
 
   handleFeedbackBtn = e => {
@@ -39,19 +41,27 @@ export default class FeedbackForm extends Component {
 
     return (
       <div>
-        <FeedbackOptions
-          options={Object.keys(this.state)}
-          onLeaveFeedback={this.handleFeedbackBtn}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.handleFeedbackBtn}
+          />
+        </Section>
 
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
       </div>
     );
   }
 }
+
+FeedbackForm.propTypes = {
+  state: PropTypes.object,
+};
