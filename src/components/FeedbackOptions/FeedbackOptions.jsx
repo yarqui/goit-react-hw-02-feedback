@@ -1,18 +1,15 @@
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  const { good, neutral, bad } = options;
+  //   const { good, neutral, bad } = props.options;
+  console.log(options);
 
-  return (
-    <>
-      <h2>Please leave feedback</h2>
-      <button name={good} type="button" onClick={onLeaveFeedback}>
-        Good
-      </button>
-      <button name={neutral} type="button" onClick={onLeaveFeedback}>
-        Neutral
-      </button>
-      <button name={bad} type="button" onClick={onLeaveFeedback}>
-        Bad
-      </button>
-    </>
-  );
+  return options.map(option => (
+    <button
+      key={option}
+      name={option}
+      type="button"
+      onClick={onLeaveFeedback}
+    ></button>
+  ));
+
+  // <h2>Please leave feedback</h2>
 };

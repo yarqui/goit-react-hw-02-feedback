@@ -4,9 +4,9 @@ import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 
 export default class FeedbackForm extends Component {
   state = {
-    good: this.props.state.good,
-    neutral: this.props.state.neutral,
-    bad: this.props.state.bad,
+    good: this.props.good,
+    neutral: this.props.neutral,
+    bad: this.props.bad,
   };
 
   handleFeedbackBtn = e => {
@@ -30,6 +30,7 @@ export default class FeedbackForm extends Component {
   countPositiveFeedbackPercentage = () => {
     const total = this.countTotalFeedback();
     const percentage = Math.round((this.state['good'] / total) * 100);
+
     return percentage ? percentage : 0;
   };
 
@@ -39,7 +40,7 @@ export default class FeedbackForm extends Component {
     return (
       <div>
         <FeedbackOptions
-          options={(good, neutral, bad)}
+          options={Object.keys(this.state)}
           onLeaveFeedback={this.handleFeedbackBtn}
         />
 
