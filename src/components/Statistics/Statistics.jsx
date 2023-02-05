@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Notification from 'components/Notification';
+import { StatsList } from './Statistics.styled';
 
 export const Statistics = ({
   good,
@@ -12,7 +13,7 @@ export const Statistics = ({
     <Notification message="There is no feedback" />
   ) : (
     <>
-      <ul>
+      <StatsList>
         <li key="good">
           Good:<span> {good}</span>
         </li>
@@ -29,7 +30,7 @@ export const Statistics = ({
           Positive Feedback:
           <span> {positivePercentage}%</span>
         </li>
-      </ul>
+      </StatsList>
     </>
   );
 };

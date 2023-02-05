@@ -1,4 +1,3 @@
-// import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import FeedbackForm from './FeedbackForm/';
 
@@ -10,8 +9,6 @@ export class App extends Component {
   };
 
   render() {
-    // const { good, bad, neutral } = this.state;
-
     return <FeedbackForm state={this.state}></FeedbackForm>;
   }
 }

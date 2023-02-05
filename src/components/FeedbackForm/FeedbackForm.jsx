@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Statistics from 'components/Statistics';
 import FeedbackOptions from 'components/FeedbackOptions';
 import Section from 'components/Section';
+import { FormWrap } from './FeedbackForm.styled';
 
 export default class FeedbackForm extends Component {
   state = {
@@ -40,7 +41,7 @@ export default class FeedbackForm extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <div>
+      <FormWrap>
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={Object.keys(this.state)}
@@ -57,7 +58,7 @@ export default class FeedbackForm extends Component {
             positivePercentage={this.countPositiveFeedbackPercentage()}
           />
         </Section>
-      </div>
+      </FormWrap>
     );
   }
 }
